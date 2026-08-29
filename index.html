@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101936">
+    <meta name="description" content="Metro Maze: Rescue Circuit, laberinto interactivo de cinco niveles.">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    <title>Metro Maze: Rescue Circuit</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">LABERINTO INTERACTIVO</p>
+          <h1>METRO MAZE <span>RESCUE CIRCUIT</span></h1>
+        </div>
+        <button id="soundBtn" class="icon-btn" aria-label="Activar o desactivar sonido" title="Sonido">♪</button>
+      </header>
+
+      <section class="hud" aria-label="Estado del juego">
+        <div><span>NIVEL</span><strong id="levelLabel">1 / 5</strong></div>
+        <div><span>TIEMPO</span><strong id="timer">00:00</strong></div>
+        <div><span>NÚCLEOS</span><strong id="cores">0 / 3</strong></div>
+        <div><span>VIDAS</span><strong id="lives">♥♥♥</strong></div>
+      </section>
+
+      <section class="game-wrap" aria-label="Tablero del juego">
+        <div id="game" role="application" aria-label="Usa flechas, WASD o los controles táctiles para moverte. Espacio o B para colocar una pulso-carga."></div>
+        <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true">
+          <div class="overlay-card">
+            <p id="overlayKicker" class="eyebrow">SECTOR DESPEJADO</p>
+            <h2 id="overlayTitle">Nivel completado</h2>
+            <p id="overlayText"></p>
+            <button id="overlayBtn" class="primary-btn">Siguiente nivel</button>
+          </div>
+        </div>
+      </section>
+
+      <p id="hint" class="hint">Recoge los núcleos, esquiva los centinelas y llega al portal. Las cargas abren rutas bloqueadas.</p>
+
+      <section class="touch-controls" aria-label="Controles táctiles">
+        <div class="dpad">
+          <button data-move="up" aria-label="Mover arriba">▲</button>
+          <button data-move="left" aria-label="Mover izquierda">◀</button>
+          <button data-move="down" aria-label="Mover abajo">▼</button>
+          <button data-move="right" aria-label="Mover derecha">▶</button>
+        </div>
+        <button id="bombBtn" class="bomb-btn" aria-label="Colocar pulso-carga">B<br><small>PULSO</small></button>
+      </section>
+
+      <footer>
+        <button id="restartBtn" class="text-btn">↻ Reiniciar nivel</button>
+        <span>Teclado: flechas / WASD · carga: espacio o B</span>
+      </footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
