@@ -1,0 +1,35 @@
+name: Crear APK Android
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'MetroMaze_Android_Source.zip'
+      - '.github/workflows/build-android.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener proyecto
+        uses: actions/checkout@v4
+      - name: Preparar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instalar Gradle y compilar APK
+        run: |
+          unzip -q MetroMaze_Android_Source.zip
+          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
+          unzip -q gradle-8.7-bin.zip
+          ./gradle-8.7/bin/gradle -p android :app:assembleDebug
+      - name: Guardar APK instalable
+        uses: actions/upload-artifact@v4
+        with:
+          name: MetroMaze-Android-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
